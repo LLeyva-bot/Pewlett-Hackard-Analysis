@@ -73,3 +73,39 @@ WHERE (de.to_date = '9999-01-01') AND (e.birth_date BETWEEN '1965-01-01' AND '19
 ORDER BY e.emp_no;
 -- Check the table to export.
 SELECT * FROM mentorship_eligibility;
+
+-- Additional queries
+
+-- Copy the mentor_elgibility query from Deliverable 2 and update the date to get all the employees whose birth dates are between January 1, 1964 and December 31, 1964
+SELECT DISTINCT ON(e.emp_no) e.emp_no,
+	e.first_name,
+	e.last_name,
+	e.birth_date,
+	de.from_date,
+	de.to_date,
+	tt.title
+INTO mentorship_eligibility_1964
+FROM employees AS e
+INNER JOIN dept_emp AS de
+ON (e.emp_no = de.emp_no)
+INNER JOIN titles AS tt
+ON (e.emp_no = tt.emp_no)
+WHERE (de.to_date = '9999-01-01') AND (e.birth_date BETWEEN '1964-01-01' AND '1964-12-31')
+ORDER BY e.emp_no;
+
+-- Copy the mentor_elgibility query from Deliverable 2 and update the date to get all the employees whose birth dates are between January 1, 1966 and December 31, 1966
+SELECT DISTINCT ON(e.emp_no) e.emp_no,
+	e.first_name,
+	e.last_name,
+	e.birth_date,
+	de.from_date,
+	de.to_date,
+	tt.title
+INTO mentorship_eligibility_1966
+FROM employees AS e
+INNER JOIN dept_emp AS de
+ON (e.emp_no = de.emp_no)
+INNER JOIN titles AS tt
+ON (e.emp_no = tt.emp_no)
+WHERE (de.to_date = '9999-01-01') AND (e.birth_date BETWEEN '1966-01-01' AND '1966-12-31')
+ORDER BY e.emp_no;
